@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LoginController;
+use App\Models\M_Karyawan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 Route::get('/', function () {
     return view('0117dashboard', []);
@@ -24,6 +27,25 @@ Route::get('/login', function () {
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'action']);
+
+Route::post('/insert', function (Request $request) {
+    Log::alert($request->all());
+    $mkaryawan = new M_Karyawan();
+    $mkaryawan->nama = $request->nama;
+    $mkaryawan->nik = $request->nik;
+    $mkaryawan->id_kar = $request->id_kar;
+    $mkaryawan->save();
+    return response()->json('success', 201);
+});
+Route::post('/update', function (Request $request) {
+    Log::alert($request->all());
+    $mkaryawan = new M_Karyawan();
+    $mkaryawan->nama = $request->nama;
+    $mkaryawan->nik = $request->nik;
+    $mkaryawan->id_kar = $request->id_kar;
+    $mkaryawan->save();
+    return response()->json('success', 201);
+});
 
 Route::get('/ContactUs', function () {
     return view('0117contactUs', [

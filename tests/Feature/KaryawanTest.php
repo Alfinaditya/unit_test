@@ -22,24 +22,18 @@ class KaryawanTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // public function test_insert_karyawan()
-    // {
-    //     $data = [
-    //         'nama' => 'Alfin',
-    //         'nik' => '33423423',
-    //         'id_kar' => 1,
-    //     ];
+    public function test_insert_karyawan()
+    {
+        $data = [
+            'nama' => 'Alfin',
+            'nik' => '33423423',
+            'id_kar' => 1,
+        ];
+        $response = $this->post('/insert', $data);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('karyawan', $data); // 
 
-    //     $insertKaryawan = M_Karyawan::create($data);
-
-    //     $this->assertInstanceOf(M_Karyawan::class, $insertKaryawan);
-
-    //     $this->assertDatabaseHas('Karyawan', [
-    //         'nama' => 'Alfin',
-    //         'nik' => '33423423',
-    //         'id_kar' => 1,
-    //     ]);
-    // }
+    }
 
     public function test_update_karyawan()
     {
